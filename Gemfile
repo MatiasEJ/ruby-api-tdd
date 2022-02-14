@@ -16,6 +16,8 @@ gem "rspec-rails"
 gem "factory_bot_rails"
 gem "active_model_serializers"
 gem "kaminari"
+gem "octokit", "~> 4.0"
+gem "net-http"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
