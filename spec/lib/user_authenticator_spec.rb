@@ -22,7 +22,7 @@ describe UserAuthenticator do
     	let(:user_data) do{
     		login: 'jsmith1',
     		url: 'http://example.com',
-    		avatar: 'http://example.com/avatar',
+    		avatar_url: 'http://example.com/avatar',
     		name: 'John Smith'
     	}
     	end
@@ -30,9 +30,17 @@ describe UserAuthenticator do
     		allow_any_instance_of(Octokit::Client).to receive(:exchange_code_for_token).and_return('validaccesstoken')
     		allow_any_instance_of(Octokit::Client).to receive(:user).and_return(user_data)
     	end
+
       it 'should save the user when does not exist' do
         expect{subject}.to change { User.count}.by(1)
         expect(User.last.name).to eq('John Smith')
+      end
+
+      it '' do      
+        user = create :user, user_data 
+        expect{ subject }.not_to change{ User.count }
+        expect(authenticator.user).to eq(user)
+
       end
     end
 
